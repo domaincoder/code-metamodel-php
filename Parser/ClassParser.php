@@ -14,7 +14,7 @@ namespace DomainCoder\Metamodel\Code\Parser;
 
 use DomainCoder\Metamodel\Code\Element;
 use DomainCoder\Metamodel\Code\Element\ClassModel\ClassFactory;
-use PhpParser\Node;
+use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Interface_;
 
@@ -51,21 +51,22 @@ class ClassParser
     }
 
     /**
-     * @param $stmt
+     * @param Stmt $stmt
      * @return bool
      */
-    public function match(Node $stmt)
+    public function match(Stmt $stmt)
     {
         return ($stmt instanceof Class_) ||
         ($stmt instanceof Interface_);
     }
 
     /**
-     * @param $classStmt
+     * @param Stmt $classStmt
      * @param $namespace
+     * @param $source
      * @return Element\ClassModel
      */
-    public function parse($classStmt, $namespace, $source)
+    public function parse(Stmt $classStmt, $namespace, $source)
     {
         $attrs = $classStmt->getAttributes();
 
@@ -80,8 +81,8 @@ class ClassParser
         $properties = array_filter($classStmt->stmts, function ($stmt) {
             return $this->propertyParser->match($stmt);
         });
-        array_map(function ($propertiesStmt) use ($class) {
-            array_map(function ($propertyStmt) use ($class, $propertiesStmt) {
+        array_map(function (Stmt $propertiesStmt) use ($class) {
+            array_map(function (Stmt $propertyStmt) use ($class, $propertiesStmt) {
                 $prop = $this->propertyParser->parse($propertyStmt, $class);
                 $this->propertyAnnotationParser->parse($propertiesStmt, $prop, $class);
             }, $propertiesStmt->props);

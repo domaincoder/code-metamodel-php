@@ -14,12 +14,10 @@ namespace DomainCoder\Metamodel\Code\Parser;
 
 use DomainCoder\Metamodel\Code\Element;
 use DomainCoder\Metamodel\Code\Element\Reference\ReferenceFactory;
-use PhpParser\Node;
+use PhpParser\Node\Stmt;
 
 class PropertyAnnotationsParser
 {
-    public static $STANDARD_ANNOTATIONS = ['@var', '@param', '@return'];
-
     /**
      * @var ReferenceFactory
      */
@@ -36,12 +34,12 @@ class PropertyAnnotationsParser
     }
 
     /**
-     * @param $propertyStmt
+     * @param Stmt $propertyStmt
      * @param Element\Property $property
      * @param Element\ClassModel $class
      * @return Element\Annotation\AnnotationCollection
      */
-    public function parse(Node $propertyStmt, Element\Property $property, Element\ClassModel $class)
+    public function parse(Stmt $propertyStmt, Element\Property $property, Element\ClassModel $class)
     {
         // annotation
         $attrs = $propertyStmt->getAttributes();
@@ -53,7 +51,7 @@ class PropertyAnnotationsParser
             $var = $vars->first();
 
             if (!is_array($var->parameters)) {
-                // TODO classのuseにあるものだけにする　（FQCN形式等は要検討）
+                // classのuseにあるものだけにする（FQCN形式等は要検討）
                 //  型が単純なクラス名ではなくて Element\Annotation のような形式になっている場合は、Element 部分が use にあればOK
                 if ($searchAlias = strstr($var->parameters, '\\', true) === false) {
                     $searchAlias = $var->parameters;
@@ -68,37 +66,5 @@ class PropertyAnnotationsParser
         }
 
         return $property->annotations;
-    }
-
-    /**
-     * @param $text
-     * @return bool
-     */
-    private function containsStandardAnnotation($text)
-    {
-        return preg_match('/' . implode('|', self::$STANDARD_ANNOTATIONS) . '/', $text);
-    }
-
-    /**
-     * @param $text
-     * @return mixed
-     */
-    private function extractStandardAnnotations($text)
-    {
-        preg_match_all('/(' . implode('|', self::$STANDARD_ANNOTATIONS) . ')(\s*)([^@\s*]*)/', $text, $matches, PREG_SET_ORDER);
-
-        $ret = [];
-        foreach ($matches as $match) {
-            if (is_array($match)) {
-                $param = trim($match[3]);
-                if ($param) {
-                    $ret[] = ['name' => str_replace('@', '', $match[1]), 'parameter' => $match[3]];
-                }
-            } else {
-                //$ret[] = ['name' => str_replace('@', '', $match[1]), 'parameter' => null];
-            }
-        }
-
-        return $ret;
     }
 }

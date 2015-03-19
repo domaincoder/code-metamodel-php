@@ -13,6 +13,7 @@
 namespace DomainCoder\Metamodel\Code\Parser;
 
 use DomainCoder\Metamodel\Code\Element\Reference\ReferenceFactory;
+use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\Use_;
 
@@ -33,16 +34,25 @@ class NamespaceParser
         $this->referenceFactory = $referenceFactory;
     }
 
+    /**
+     * @param array $stmts
+     * @return bool
+     */
     public function match($stmts)
     {
         return $stmts[0] instanceof Namespace_;
     }
 
+    /**
+     * @param array $stmts
+     * @param $sourcePath
+     * @return string
+     */
     public function parse($stmts, $sourcePath)
     {
         $namespace = (string)$stmts[0]->name;
 
-        $classStmts = array_filter($stmts[0]->stmts, function ($stmt) {
+        $classStmts = array_filter($stmts[0]->stmts, function (Stmt $stmt) {
             return $this->classParser->match($stmt);
         });
 
@@ -56,9 +66,9 @@ class NamespaceParser
                 return $element instanceof Use_;
             });
 
-            array_map(function ($useStmt) use ($class) {
-                array_map(function ($oneUseStmt) use ($class) {
-                    $ref = $this->referenceFactory->create((string)$oneUseStmt->name, $class);
+            array_map(function (Stmt $useStmt) use ($class) {
+                array_map(function (Stmt $oneUseStmt) use ($class) {
+                    $this->referenceFactory->create((string)$oneUseStmt->name, $class);
                 }, $useStmt->uses);
             }, $useStmts);
         }

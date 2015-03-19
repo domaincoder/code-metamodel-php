@@ -15,6 +15,7 @@ namespace DomainCoder\Metamodel\Code\Parser;
 use DomainCoder\Metamodel\Code\Element;
 use DomainCoder\Metamodel\Code\Element\Method\MethodFactory;
 use PhpParser\Node;
+use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\ClassMethod;
 
 class MethodParser
@@ -40,20 +41,20 @@ class MethodParser
     }
 
     /**
-     * @param $stmt
+     * @param Stmt $stmt
      * @return bool
      */
-    public function match($stmt)
+    public function match(Stmt $stmt)
     {
         return $stmt instanceof ClassMethod;
     }
 
     /**
-     * @param $methodStmt
+     * @param Stmt $methodStmt
      * @param Element\ClassModel $class
      * @return Element\Method
      */
-    public function parse(Node $methodStmt, Element\ClassModel $class)
+    public function parse(Stmt $methodStmt, Element\ClassModel $class)
     {
         $method = $this->methodFactory->create($methodStmt->name, $class);
 
