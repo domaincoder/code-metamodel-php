@@ -62,5 +62,4 @@ class MethodParser
 
         return $method;
     }
-
 }

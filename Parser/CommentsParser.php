@@ -43,7 +43,9 @@ class CommentsParser
      */
     public function parse($stmt, $target)
     {
-        if (!isset($stmt['comments'])) return;
+        if (!isset($stmt['comments'])) {
+            return;
+        }
 
         $comment = '';
 
@@ -55,7 +57,7 @@ class CommentsParser
                 $this->annotationFactory->create($stmt->name, $stmt->values, $target);
             }, $annotationStmts);
 
-            $comment .= array_reduce(explode("\n", $text), function($current, $line) {
+            $comment .= array_reduce(explode("\n", $text), function ($current, $line) {
                 return $current . $this->commentFilter->filter($line);
             }, '');
         }

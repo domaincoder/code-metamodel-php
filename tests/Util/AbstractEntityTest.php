@@ -14,7 +14,9 @@ namespace DomainCoder\Metamodel\Code\Util;
 
 use DomainCoder\Metamodel\Code\Element\Source;
 
-class DummyEntity extends AbstractEntity {};
+class DummyEntity extends AbstractEntity
+{
+};
 
 class AbstractEntityTest extends \PHPUnit_Framework_TestCase
 {

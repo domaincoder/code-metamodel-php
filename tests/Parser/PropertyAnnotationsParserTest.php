@@ -12,7 +12,6 @@
 
 namespace DomainCoder\Metamodel\Code\Parser;
 
-use DomainCoder\Metamodel\Code\Element\Annotation;
 use DomainCoder\Metamodel\Code\Element\Annotation\AnnotationFactory;
 use DomainCoder\Metamodel\Code\Element\ClassModel;
 use DomainCoder\Metamodel\Code\Element\Property;

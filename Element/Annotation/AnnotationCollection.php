@@ -23,7 +23,7 @@ class AnnotationCollection extends AbstractCollection
      */
     public function findByName($name)
     {
-        return new AnnotationCollection($this->filter(function($annotation) use ($name) {
+        return new AnnotationCollection($this->filter(function ($annotation) use ($name) {
             /** @var Annotation $annotation */
             return $annotation->isName($name);
         }));

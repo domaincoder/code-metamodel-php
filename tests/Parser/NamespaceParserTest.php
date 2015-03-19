@@ -12,8 +12,6 @@
 
 namespace DomainCoder\Metamodel\Code\Parser;
 
-use DomainCoder\Metamodel\Code\Element\ClassModel;
-use DomainCoder\Metamodel\Code\Element\Reference;
 use DomainCoder\Metamodel\Code\Element\Reference\ReferenceFactory;
 
 class NamespaceParserTest extends \PHPUnit_Framework_TestCase

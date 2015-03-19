@@ -82,7 +82,6 @@ class SimpleDumper implements DumperInterface
             /** @var Annotation $annotation */
             if (is_array($annotation->parameters)) {
                 return $current . '      ' . $annotation->name . ' TODO array impl' . PHP_EOL;
-
             } else {
                 return $current . '      ' . $annotation->name . ' ' . $annotation->parameters . PHP_EOL;
             }
@@ -120,7 +119,6 @@ class SimpleDumper implements DumperInterface
             /** @var Annotation $annotation */
             if (is_array($annotation->parameters)) {
                 return $current . '      ' . $annotation->name . ' TODO array impl' . PHP_EOL;
-
             } else {
                 return $current . '      ' . $annotation->name . ' ' . $annotation->parameters . PHP_EOL;
             }

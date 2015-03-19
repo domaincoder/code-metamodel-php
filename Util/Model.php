@@ -33,7 +33,8 @@ class Model
      */
     public $propertyCollection;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->classCollection = new ClassCollection();
         $this->methodCollection = new MethodCollection();
         $this->propertyCollection = new PropertyCollection();

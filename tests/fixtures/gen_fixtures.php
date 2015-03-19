@@ -31,7 +31,9 @@ class ClassVisitor extends NodeVisitorAbstract
 
     public function enterNode(\PhpParser\Node $node)
     {
-        if (!($node instanceof Class_ or $node instanceof Interface_)) return;
+        if (!($node instanceof Class_ or $node instanceof Interface_)) {
+            return;
+        }
 
         $file = $this->context->file;
 
@@ -53,7 +55,9 @@ class PropertyVisitor extends NodeVisitorAbstract
 
     public function enterNode(\PhpParser\Node $node)
     {
-        if (!($node instanceof Property)) return;
+        if (!($node instanceof Property)) {
+            return;
+        }
 
         $file = $this->context->file;
 
@@ -78,7 +82,9 @@ class MethodVisitor extends NodeVisitorAbstract
 
     public function enterNode(\PhpParser\Node $node)
     {
-        if (!($node instanceof ClassMethod)) return;
+        if (!($node instanceof ClassMethod)) {
+            return;
+        }
 
         $file = $this->context->file;
 
@@ -107,7 +113,6 @@ $sources = $finder
     ->in(__DIR__.'/1');
 
 foreach ($sources as $file) {
-
     $context->file = $file;
 
     /** @var \SplFileInfo $file */
@@ -122,4 +127,3 @@ foreach ($sources as $file) {
         '<?php return unserialize(base64_decode("'. base64_encode(serialize($stmts)). '"));'
     );
 }
-

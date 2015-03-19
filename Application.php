@@ -12,7 +12,6 @@
 
 namespace DomainCoder\Metamodel\Code;
 
-use DomainCoder\Metamodel\Code\Command;
 use Symfony\Component\Console\Application as BaseApplication;
 
 class Application extends BaseApplication

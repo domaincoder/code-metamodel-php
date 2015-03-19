@@ -14,10 +14,8 @@ namespace DomainCoder\Metamodel\Code\Command;
 
 use DomainCoder\Metamodel\Code\Command\Exception\CacheNotFoundException;
 use DomainCoder\Metamodel\Code\Element\Annotation;
-use DomainCoder\Metamodel\Code\Element\Method;
 use DomainCoder\Metamodel\Code\Element\Property;
 use DomainCoder\Metamodel\Code\Util\Model;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
