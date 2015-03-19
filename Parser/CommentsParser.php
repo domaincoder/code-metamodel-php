@@ -13,7 +13,6 @@
 namespace DomainCoder\Metamodel\Code\Parser;
 
 use DomainCoder\Metamodel\Code\Element\Annotation\AnnotationFactory;
-use PhpParser\Node;
 
 class CommentsParser
 {

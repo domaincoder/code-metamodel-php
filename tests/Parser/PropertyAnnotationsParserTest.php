@@ -62,7 +62,6 @@ class PropertyAnnotationsParserTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $model = new Model();
         $this->commentFilter = new CommentFilter();
         $this->annotationFactory = new AnnotationFactory();
         $this->referenceFactory = \Phake::mock(ReferenceFactory::class);
@@ -73,7 +72,6 @@ class PropertyAnnotationsParserTest extends \PHPUnit_Framework_TestCase
         $this->property = new Property('test', 'test', null, null, $this->class);
 
         $this->parser = new PropertyAnnotationsParser(
-            $model,
             $this->referenceFactory,
             $this->commentsParser
         );

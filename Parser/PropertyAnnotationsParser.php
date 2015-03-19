@@ -15,22 +15,11 @@ namespace DomainCoder\Metamodel\Code\Parser;
 use DomainCoder\Metamodel\Code\Element;
 use DomainCoder\Metamodel\Code\Element\Annotation\AnnotationFactory;
 use DomainCoder\Metamodel\Code\Element\Reference\ReferenceFactory;
-use DomainCoder\Metamodel\Code\Util\Model;
 use PhpParser\Node;
 
 class PropertyAnnotationsParser
 {
     public static $STANDARD_ANNOTATIONS = ['@var', '@param', '@return'];
-
-    /**
-     * @var Model
-     */
-    private $model;
-
-    /**
-     * @var AnnotationFactory
-     */
-    private $annotationFactory;
 
     /**
      * @var ReferenceFactory
@@ -41,9 +30,8 @@ class PropertyAnnotationsParser
      */
     private $commentsParser;
 
-    public function __construct(Model $model, ReferenceFactory $referenceFactory, CommentsParser $commentsParser)
+    public function __construct(ReferenceFactory $referenceFactory, CommentsParser $commentsParser)
     {
-        $this->model = $model;
         $this->referenceFactory = $referenceFactory;
         $this->commentsParser = $commentsParser;
     }
