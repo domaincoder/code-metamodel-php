@@ -12,6 +12,7 @@
 
 namespace DomainCoder\Metamodel\Code\Command;
 
+use DomainCoder\Metamodel\Code\Command\Exception\CacheNotFoundException;
 use DomainCoder\Metamodel\Code\Dumper\SimpleDumper;
 use DomainCoder\Metamodel\Code\Util\Model;
 use Symfony\Component\Console\Input\InputInterface;
