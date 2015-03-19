@@ -14,6 +14,7 @@ namespace DomainCoder\Metamodel\Code\Parser;
 
 use DomainCoder\Metamodel\Code\Element;
 use DomainCoder\Metamodel\Code\Element\ClassModel\ClassFactory;
+use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Interface_;
 
@@ -53,7 +54,7 @@ class ClassParser
      * @param $stmt
      * @return bool
      */
-    public function match($stmt)
+    public function match(Node $stmt)
     {
         return ($stmt instanceof Class_) ||
         ($stmt instanceof Interface_);

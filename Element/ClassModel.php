@@ -14,10 +14,11 @@ namespace DomainCoder\Metamodel\Code\Element;
 
 use DomainCoder\Metamodel\Code\Element\Method\MethodCollection;
 use DomainCoder\Metamodel\Code\Element\Property\PropertyCollection;
+use DomainCoder\Metamodel\Code\Element\Reference\ReferenceableInterface;
 use DomainCoder\Metamodel\Code\Element\Reference\ReferenceCollection;
 use DomainCoder\Metamodel\Code\Util\AbstractEntity;
 
-class ClassModel extends AbstractEntity
+class ClassModel extends AbstractEntity implements ReferenceableInterface
 {
     /**
      * @var string
@@ -72,5 +73,13 @@ class ClassModel extends AbstractEntity
     public function getFQCN()
     {
         return $this->namespace . '\\' . $this->name;
+    }
+
+    /**
+     * @return ReferenceCollection
+     */
+    public function getReference()
+    {
+        return $this->references;
     }
 }

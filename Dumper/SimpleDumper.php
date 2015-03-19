@@ -27,7 +27,7 @@ class SimpleDumper implements DumperInterface
      */
     public function dump(ClassCollection $classes)
     {
-        return $classes->reduce('', function ($class, $index, $collection, $current) {
+        return $classes->reduce('', function (ClassModel $class, $index, $collection, $current) {
             /** @var ClassModel $class */
             return $current . $class->getFQCN() . PHP_EOL
             . $this->dumpClassInfo($class) . PHP_EOL
@@ -44,12 +44,12 @@ class SimpleDumper implements DumperInterface
      */
     protected function dumpClassInfo(ClassModel $class)
     {
-        $buf = $class->annotations->reduce('', function ($annotation, $index, $collection, $current) {
+        $buf = $class->annotations->reduce('', function (Annotation $annotation, $index, $collection, $current) {
             /** @var Annotation $annotation */
             return $current . '  ' . $annotation->name . PHP_EOL;
         });
 
-        $buf .= $class->references->reduce('', function ($reference, $index, $collection, $current) {
+        $buf .= $class->references->reduce('', function (Reference $reference, $index, $collection, $current) {
             /** @var Reference $reference */
             return $current . '  use ' . $reference->name . PHP_EOL;
         });
@@ -64,7 +64,7 @@ class SimpleDumper implements DumperInterface
      */
     protected function dumpProperties(ClassModel $class)
     {
-        return $class->properties->reduce('', function ($property, $index, $collection, $current) {
+        return $class->properties->reduce('', function (Property $property, $index, $collection, $current) {
             /** @var Property $property */
             return $current . '  - ' . $property->name . ' ' . $property->comment . PHP_EOL
             . $this->dumpPropertyInfo($property);
@@ -78,7 +78,7 @@ class SimpleDumper implements DumperInterface
      */
     protected function dumpPropertyInfo(Property $property)
     {
-        $buf = $property->annotations->reduce('', function ($annotation, $index, $collection, $current) {
+        $buf = $property->annotations->reduce('', function (Annotation $annotation, $index, $collection, $current) {
             /** @var Annotation $annotation */
             if (is_array($annotation->parameters)) {
                 return $current . '      ' . $annotation->name . ' TODO array impl' . PHP_EOL;
@@ -101,7 +101,7 @@ class SimpleDumper implements DumperInterface
      */
     protected function dumpMethods(ClassModel $class)
     {
-        return $class->methods->reduce('', function ($method, $index, $collection, $current) {
+        return $class->methods->reduce('', function (Method $method, $index, $collection, $current) {
             /** @var Method $method */
             return $current . '  # ' . $method->name . '() ' . $method->comment . PHP_EOL
             . $this->dumpMethodInfo($method);
@@ -115,7 +115,7 @@ class SimpleDumper implements DumperInterface
      */
     protected function dumpMethodInfo(Method $method)
     {
-        $buf = $method->annotations->reduce('', function ($annotation, $index, $collection, $current) {
+        $buf = $method->annotations->reduce('', function (Annotation $annotation, $index, $collection, $current) {
             /** @var Annotation $annotation */
             if (is_array($annotation->parameters)) {
                 return $current . '      ' . $annotation->name . ' TODO array impl' . PHP_EOL;

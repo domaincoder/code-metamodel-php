@@ -24,8 +24,7 @@ class MethodCollection extends AbstractCollection
      */
     public function findByAnnotationName($name)
     {
-        return new MethodCollection($this->filter(function ($method) use ($name) {
-            /** @var Method $method */
+        return new MethodCollection($this->filter(function (Method $method) use ($name) {
             $annots = $method->annotations->findByName($name);
             return $annots->count() > 0;
         }));
@@ -37,8 +36,7 @@ class MethodCollection extends AbstractCollection
      */
     public function findByComment($keyword)
     {
-        return new MethodCollection($this->filter(function ($method) use ($keyword) {
-            /** @var Method $method */
+        return new MethodCollection($this->filter(function (Method $method) use ($keyword) {
             return strpos($method->comment, $keyword) !== false;
         }));
     }

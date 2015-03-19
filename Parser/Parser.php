@@ -15,6 +15,7 @@ namespace DomainCoder\Metamodel\Code\Parser;
 use DomainCoder\Metamodel\Code\Element;
 use DomainCoder\Metamodel\Code\Util\Model;
 use PhpParser\Lexer as PhpLexer;
+use PhpParser\Node;
 use PhpParser\Parser as PhpParser;
 use PhpParser\Error as PhpParserError;
 use PhpParser\NodeTraverser;

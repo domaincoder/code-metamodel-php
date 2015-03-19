@@ -19,9 +19,8 @@ class ReferenceCollection extends AbstractCollection
 {
     public function findByAlias($name)
     {
-        return new ReferenceCollection($this->filter(function ($reference) use ($name) {
-            /** @var Reference $reference */
-            return $reference->alias == $name;
+        return new ReferenceCollection($this->filter(function (Reference $reference) use ($name) {
+            return $reference->alias === $name;
         }));
     }
 }

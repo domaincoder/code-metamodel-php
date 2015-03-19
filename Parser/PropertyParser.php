@@ -14,6 +14,7 @@ namespace DomainCoder\Metamodel\Code\Parser;
 
 use DomainCoder\Metamodel\Code\Element;
 use DomainCoder\Metamodel\Code\Element\Property\PropertyFactory;
+use PhpParser\Node;
 use PhpParser\Node\Stmt\Property;
 
 class PropertyParser
@@ -32,7 +33,7 @@ class PropertyParser
      * @param $stmt
      * @return bool
      */
-    public function match($stmt)
+    public function match(Node $stmt)
     {
         return $stmt instanceof Property;
     }
@@ -42,7 +43,7 @@ class PropertyParser
      * @param Element\ClassModel $class
      * @return Element\Property
      */
-    public function parse($propertyStmt, Element\ClassModel $class)
+    public function parse(Node $propertyStmt, Element\ClassModel $class)
     {
         // TODO get datatype and access modifier
         return $this->propertyFactory->create($propertyStmt->name, null, null, $class);

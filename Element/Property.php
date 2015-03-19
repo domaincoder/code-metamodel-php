@@ -12,9 +12,10 @@
 
 namespace DomainCoder\Metamodel\Code\Element;
 
+use DomainCoder\Metamodel\Code\Element\Reference\ReferenceableInterface;
 use DomainCoder\Metamodel\Code\Util\AbstractEntity;
 
-class Property extends AbstractEntity
+class Property extends AbstractEntity implements ReferenceableInterface
 {
     /**
      * @var string
@@ -82,5 +83,13 @@ class Property extends AbstractEntity
     public function setAccessModifier($accessModifier)
     {
         $this->accessModifier = $accessModifier;
+    }
+
+    /**
+     * @return Reference|null
+     */
+    public function getReference()
+    {
+        return $this->reference;
     }
 }

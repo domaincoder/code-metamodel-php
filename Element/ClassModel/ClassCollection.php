@@ -24,8 +24,7 @@ class ClassCollection extends AbstractCollection
      */
     public function findByAnnotationName($name)
     {
-        return new ClassCollection($this->filter(function ($class) use ($name) {
-            /** @var ClassModel $class */
+        return new ClassCollection($this->filter(function (ClassModel $class) use ($name) {
             $annots = $class->annotations->findByName($name);
             return $annots->count() > 0;
         }));
@@ -37,8 +36,7 @@ class ClassCollection extends AbstractCollection
      */
     public function findByComment($keyword)
     {
-        return new ClassCollection($this->filter(function ($class) use ($keyword) {
-            /** @var ClassModel $class */
+        return new ClassCollection($this->filter(function (ClassModel $class) use ($keyword) {
             return strpos($class->comment, $keyword) !== false;
         }));
     }

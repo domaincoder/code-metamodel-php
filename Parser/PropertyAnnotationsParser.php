@@ -16,6 +16,7 @@ use DomainCoder\Metamodel\Code\Element;
 use DomainCoder\Metamodel\Code\Element\Annotation\AnnotationFactory;
 use DomainCoder\Metamodel\Code\Element\Reference\ReferenceFactory;
 use DomainCoder\Metamodel\Code\Util\Model;
+use PhpParser\Node;
 
 class PropertyAnnotationsParser
 {
@@ -53,7 +54,7 @@ class PropertyAnnotationsParser
      * @param Element\ClassModel $class
      * @return Element\Annotation\AnnotationCollection
      */
-    public function parse($propertyStmt, Element\Property $property, Element\ClassModel $class)
+    public function parse(Node $propertyStmt, Element\Property $property, Element\ClassModel $class)
     {
         // annotation
         $attrs = $propertyStmt->getAttributes();

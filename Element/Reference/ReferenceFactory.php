@@ -16,11 +16,23 @@ use DomainCoder\Metamodel\Code\Element;
 
 class ReferenceFactory
 {
-    public function create($name, $target)
+    /**
+     * @param $name
+     * @param ReferenceableInterface $target
+     * @return Element\Reference|mixed
+     */
+    public function create($name, ReferenceableInterface $target)
     {
         $reference = new Element\Reference($name, $name);
 
-        $target->references->add($reference);
+        $temp = $target->getReference();
+        if ($temp instanceof ReferenceCollection) {
+            foreach ($temp as $reference) {
+                $target->add($reference);
+            }
+        } else {
+            $target->add($temp);
+        }
 
         return $reference;
     }
