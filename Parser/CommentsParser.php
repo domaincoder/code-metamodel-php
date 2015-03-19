@@ -53,7 +53,6 @@ class CommentsParser
             $text = $commentObj->getText();
             $annotationStmts = $this->annotationsParser->parse($text);
             array_map(function ($stmt) use ($target) {
-
                 $this->annotationFactory->create($stmt->name, $stmt->values, $target);
             }, $annotationStmts);
 

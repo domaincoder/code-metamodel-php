@@ -50,7 +50,7 @@ class Property extends AbstractEntity implements ReferenceableInterface
      */
     public function getFQN()
     {
-        return sprintf('%s:%s()', $this->class->getFQCN(), $this->name);
+        return sprintf('%s:%s', $this->class->getFQCN(), $this->name);
     }
 
     /**

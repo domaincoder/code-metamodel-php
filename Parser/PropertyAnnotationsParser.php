@@ -13,7 +13,6 @@
 namespace DomainCoder\Metamodel\Code\Parser;
 
 use DomainCoder\Metamodel\Code\Element;
-use DomainCoder\Metamodel\Code\Element\Annotation\AnnotationFactory;
 use DomainCoder\Metamodel\Code\Element\Reference\ReferenceFactory;
 use PhpParser\Node;
 
@@ -46,7 +45,6 @@ class PropertyAnnotationsParser
     {
         // annotation
         $attrs = $propertyStmt->getAttributes();
-
         $this->commentsParser->parse($attrs, $property);
 
         $vars = $property->annotations->findByName('var');
