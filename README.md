@@ -7,7 +7,7 @@ Code Metamodel for PHP
 [![Total Downloads](https://poser.pugx.org/domaincoder/code-metamodel-php/downloads.png)](https://packagist.org/packages/domaincoder/code-metamodel-php)
 [![Latest Stable Version](https://poser.pugx.org/domaincoder/code-metamodel-php/v/stable.png)](https://packagist.org/packages/domaincoder/code-metamodel-php)
 [![Latest Unstable Version](https://poser.pugx.org/domaincoder/code-metamodel-php/v/unstable.png)](https://packagist.org/packages/domaincoder/code-metamodel-php)
-
+[![Dependency Status](https://www.versioneye.com/php/domaincoder:code-metamodel-php/dev-master/badge.svg)](https://www.versioneye.com/php/webmozart:console/1.0.0)
 ## Features
 
 - `Parser\Parser` parses PHP sources under a project to generate metamodel objects (via CLI command).
