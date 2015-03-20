@@ -28,7 +28,7 @@
         "nikic/php-parser": "~1.1",
         "herrera-io/annotations": "~1.0",
         "doctrine/annotations": "~1.2",
-        "lstrojny/functional-php": "dev-master",
+        "lstrojny/functional-php": "1.0.0-alpha4",
         "symfony/console": "~2.6",
         "symfony/finder": "~2.6"
     },
