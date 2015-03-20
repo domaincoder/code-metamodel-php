@@ -27,7 +27,7 @@
         "phpmentors/domain-kata": "~1.3",
         "nikic/php-parser": "~1.1",
         "herrera-io/annotations": "~1.0",
-        "doctrine/annotations": "~1.3",
+        "doctrine/annotations": "~1.2",
         "lstrojny/functional-php": "dev-master",
         "symfony/console": "~2.6",
         "symfony/finder": "~2.6"
