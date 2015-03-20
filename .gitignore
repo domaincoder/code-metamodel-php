@@ -8,4 +8,5 @@ build
 vendor/
 var/
 composer.phar
+/composer.lock
 !.gitkeep
