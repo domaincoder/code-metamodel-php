@@ -16,7 +16,7 @@ use PHPMentors\DomainKata\Entity\EntityCollectionInterface;
 use PHPMentors\DomainKata\Entity\EntityInterface;
 use Functional as F;
 
-abstract class AbstractCollection implements EntityCollectionInterface, \ArrayAccess
+abstract class AbstractCollection implements EntityCollectionInterface
 {
     protected $map;
 
@@ -101,41 +101,5 @@ abstract class AbstractCollection implements EntityCollectionInterface, \ArrayAc
     public function reduce($initial, $f)
     {
         return F\reduce_left($this->map, $f, $initial);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function offsetExists($offset)
-    {
-        $size = count($this->map);
-        return (0 <= $offset && $offset < $size);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function offsetGet($offset)
-    {
-        $temp = array_values($this->map);
-        return $temp[$offset];
-    }
-
-    /**
-     * @inheritdoc
-     * @codeCoverageIgnore
-     */
-    public function offsetSet($offset, $value)
-    {
-        throw new \RuntimeException();
-    }
-
-    /**
-     * @inheritdoc
-     * @codeCoverageIgnore
-     */
-    public function offsetUnset($offset)
-    {
-        throw new \RuntimeException();
     }
 }
