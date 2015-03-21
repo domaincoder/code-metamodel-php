@@ -13,10 +13,10 @@
 namespace DomainCoder\Metamodel\Code\Command;
 
 use DomainCoder\Metamodel\Code\Parser\Parser;
+use DomainCoder\Metamodel\Code\Parser\ProjectParser;
 use DomainCoder\Metamodel\Code\Util\Model;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Finder\Finder;
 
 class ParseCommand extends BaseCommand
 {
@@ -43,25 +43,9 @@ class ParseCommand extends BaseCommand
     {
         $path = $input->getArgument('path');
 
-        $finder = new Finder();
-        $sources = $finder
-            ->files()
-            ->name('*.php')
-            ->notName('*Test.php')
-            ->exclude(['cache', 'logs', 'vendor', 'tests', 'Test'])
-            ->in($path);
-
-        $parser = new Parser();
-
-        foreach ($sources as $file) {
-            /** @var \SplFileInfo $file */
-            $filePath = $file->getRealPath();
-            $content = file_get_contents($filePath);
-            $parser->parse($content, $filePath);
-        }
-
+        $projectParser = new ProjectParser(new Parser());
         /** @var Model $model */
-        $model = $parser();
+        $model = $projectParser->parse($path);
 
         $this->writeCache($path, $model);
 
