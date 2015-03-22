@@ -22,7 +22,7 @@ class PropertyCollection extends AbstractCollection
      * @param $name
      * @return PropertyCollection
      */
-    public function findByAnnotationName($name)
+    public function withAnnotationName($name)
     {
         return new PropertyCollection($this->filter(function (Property $property) use ($name) {
             $annots = $property->annotations->withName($name);
@@ -34,7 +34,7 @@ class PropertyCollection extends AbstractCollection
      * @param $keyword
      * @return PropertyCollection
      */
-    public function findByComment($keyword)
+    public function withComment($keyword)
     {
         return new PropertyCollection($this->filter(function (Property $property) use ($keyword) {
             return strpos($property->comment, $keyword) !== false;

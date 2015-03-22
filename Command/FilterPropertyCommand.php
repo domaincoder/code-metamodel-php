@@ -64,10 +64,10 @@ class FilterPropertyCommand extends BaseCommand
         $properties = $model->propertyCollection;
 
         if ($target = $input->getOption('annotation')) {
-            $properties = $properties->findByAnnotationName($target);
+            $properties = $properties->withAnnotationName($target);
         }
         if ($keyword = $input->getOption('comment')) {
-            $properties = $properties->findByComment($keyword);
+            $properties = $properties->withComment($keyword);
         }
 
         if (count($properties) > 0) {
