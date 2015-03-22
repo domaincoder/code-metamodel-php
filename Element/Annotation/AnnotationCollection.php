@@ -21,7 +21,7 @@ class AnnotationCollection extends AbstractCollection
      * @param $name
      * @return AnnotationCollection
      */
-    public function findByName($name)
+    public function withName($name)
     {
         return new AnnotationCollection($this->filter(function (Annotation $annotation) use ($name) {
             return $annotation->isName($name);

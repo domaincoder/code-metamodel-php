@@ -25,7 +25,7 @@ class ClassCollection extends AbstractCollection
     public function findByAnnotationName($name)
     {
         return new ClassCollection($this->filter(function (ClassModel $class) use ($name) {
-            $annots = $class->annotations->findByName($name);
+            $annots = $class->annotations->withName($name);
             return $annots->count() > 0;
         }));
     }

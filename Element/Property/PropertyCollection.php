@@ -25,7 +25,7 @@ class PropertyCollection extends AbstractCollection
     public function findByAnnotationName($name)
     {
         return new PropertyCollection($this->filter(function (Property $property) use ($name) {
-            $annots = $property->annotations->findByName($name);
+            $annots = $property->annotations->withName($name);
             return $annots->count() > 0;
         }));
     }

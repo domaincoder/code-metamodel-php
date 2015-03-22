@@ -80,7 +80,7 @@ class FilterClassCommand extends BaseCommand
                 $output->writeln(' ' . $class->getFQCN());
 
                 if ($target = $input->getOption('annotation')) {
-                    $annots = $class->annotations->findByName($target);
+                    $annots = $class->annotations->withName($target);
                     foreach ($annots as $anno) {
                         /** @var Annotation $anno */
                         $kvs = F\Flatten($anno->parameters);

@@ -25,7 +25,7 @@ class MethodCollection extends AbstractCollection
     public function findByAnnotationName($name)
     {
         return new MethodCollection($this->filter(function (Method $method) use ($name) {
-            $annots = $method->annotations->findByName($name);
+            $annots = $method->annotations->withName($name);
             return $annots->count() > 0;
         }));
     }

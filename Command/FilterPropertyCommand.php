@@ -77,7 +77,7 @@ class FilterPropertyCommand extends BaseCommand
                 $output->writeln(' ' . $property->getFQN());
 
                 if ($target = $input->getOption('annotation')) {
-                    $annots = $property->annotations->findByName($target);
+                    $annots = $property->annotations->withName($target);
                     foreach ($annots as $anno) {
                         /** @var Annotation $anno */
                         $kvs = F\Flatten($anno->parameters);

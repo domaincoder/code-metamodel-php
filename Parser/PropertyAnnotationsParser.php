@@ -45,7 +45,7 @@ class PropertyAnnotationsParser
         $attrs = $propertyStmt->getAttributes();
         $this->commentsParser->parse($attrs, $property);
 
-        $vars = $property->annotations->findByName('var');
+        $vars = $property->annotations->withName('var');
         if ($vars->count()) {
             /** @var Element\Annotation $var */
             $var = $vars->first();
