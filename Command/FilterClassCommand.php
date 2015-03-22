@@ -67,10 +67,10 @@ class FilterClassCommand extends BaseCommand
         $classes = $model->classCollection;
 
         if ($target = $input->getOption('annotation')) {
-            $classes = $classes->findByAnnotationName($target);
+            $classes = $classes->withAnnotationName($target);
         }
         if ($keyword = $input->getOption('comment')) {
-            $classes = $classes->findByComment($keyword);
+            $classes = $classes->withComment($keyword);
         }
 
         if (count($classes) > 0) {

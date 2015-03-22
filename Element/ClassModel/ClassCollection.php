@@ -22,7 +22,7 @@ class ClassCollection extends AbstractCollection
      * @param $name
      * @return ClassCollection
      */
-    public function findByAnnotationName($name)
+    public function withAnnotationName($name)
     {
         return new ClassCollection($this->filter(function (ClassModel $class) use ($name) {
             $annots = $class->annotations->withName($name);
@@ -34,7 +34,7 @@ class ClassCollection extends AbstractCollection
      * @param $keyword
      * @return ClassCollection
      */
-    public function findByComment($keyword)
+    public function withComment($keyword)
     {
         return new ClassCollection($this->filter(function (ClassModel $class) use ($keyword) {
             return strpos($class->comment, $keyword) !== false;
