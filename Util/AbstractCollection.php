@@ -53,6 +53,14 @@ abstract class AbstractCollection implements EntityCollectionInterface
     }
 
     /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return $this->_data;
+    }
+
+    /**
      * @inheritdoc
      */
     public function remove(EntityInterface $entity)
