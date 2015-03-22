@@ -47,6 +47,6 @@ class PropertyCollection extends AbstractCollection
     public function add(EntityInterface $entity)
     {
         /** @var Property $entity */
-        $this->map[$entity->getFQN()] = $entity;
+        $this->_data[$entity->getFQN()] = $entity;
     }
 }

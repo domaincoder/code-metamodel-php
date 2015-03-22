@@ -18,14 +18,14 @@ use Functional as F;
 
 abstract class AbstractCollection implements EntityCollectionInterface
 {
-    protected $map;
+    protected $_data;
 
     public function __construct($data = null)
     {
         if ($data === null) {
             $data = [];
         }
-        $this->map = $data;
+        $this->_data = $data;
     }
 
     /**
@@ -33,7 +33,7 @@ abstract class AbstractCollection implements EntityCollectionInterface
      */
     public function getIterator()
     {
-        return new \ArrayIterator($this->map);
+        return new \ArrayIterator($this->_data);
     }
 
     /**
@@ -41,7 +41,7 @@ abstract class AbstractCollection implements EntityCollectionInterface
      */
     public function add(EntityInterface $entity)
     {
-        $this->map[$entity->id] = $entity;
+        $this->_data[$entity->id] = $entity;
     }
 
     /**
@@ -49,7 +49,7 @@ abstract class AbstractCollection implements EntityCollectionInterface
      */
     public function get($key)
     {
-        return $this->map[$key];
+        return $this->_data[$key];
     }
 
     /**
@@ -57,7 +57,7 @@ abstract class AbstractCollection implements EntityCollectionInterface
      */
     public function remove(EntityInterface $entity)
     {
-        unset($this->map[$entity->id]);
+        unset($this->_data[$entity->id]);
     }
 
     /**
@@ -65,7 +65,7 @@ abstract class AbstractCollection implements EntityCollectionInterface
      */
     public function count()
     {
-        return count($this->map);
+        return count($this->_data);
     }
 
     /**
@@ -73,7 +73,7 @@ abstract class AbstractCollection implements EntityCollectionInterface
      */
     public function isEmpty()
     {
-        return count($this->map) === 0;
+        return count($this->_data) === 0;
     }
 
     /**
@@ -82,7 +82,7 @@ abstract class AbstractCollection implements EntityCollectionInterface
      */
     public function filter(\Closure $f)
     {
-        return F\select($this->map, $f);
+        return F\select($this->_data, $f);
     }
 
     /**
@@ -90,7 +90,7 @@ abstract class AbstractCollection implements EntityCollectionInterface
      */
     public function first()
     {
-        return F\first($this->map);
+        return F\first($this->_data);
     }
 
     /**
@@ -100,6 +100,15 @@ abstract class AbstractCollection implements EntityCollectionInterface
      */
     public function reduce($initial, $f)
     {
-        return F\reduce_left($this->map, $f, $initial);
+        return F\reduce_left($this->_data, $f, $initial);
+    }
+
+    /**
+     * @param $f
+     * @return array
+     */
+    public function map($f)
+    {
+        return F\map($this->_data, $f);
     }
 }

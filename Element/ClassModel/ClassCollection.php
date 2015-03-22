@@ -47,6 +47,6 @@ class ClassCollection extends AbstractCollection
     public function add(EntityInterface $entity)
     {
         /** @var ClassModel $entity */
-        $this->map[$entity->getFQCN()] = $entity;
+        $this->_data[$entity->getFQCN()] = $entity;
     }
 }

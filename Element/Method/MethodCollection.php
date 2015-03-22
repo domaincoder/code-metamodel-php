@@ -47,6 +47,6 @@ class MethodCollection extends AbstractCollection
     public function add(EntityInterface $entity)
     {
         /** @var Method $entity */
-        $this->map[$entity->getFQN()] = $entity;
+        $this->_data[$entity->getFQN()] = $entity;
     }
 }
