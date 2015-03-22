@@ -22,7 +22,7 @@ class MethodCollection extends AbstractCollection
      * @param $name
      * @return MethodCollection
      */
-    public function findByAnnotationName($name)
+    public function withAnnotationName($name)
     {
         return new MethodCollection($this->filter(function (Method $method) use ($name) {
             $annots = $method->annotations->withName($name);
@@ -34,7 +34,7 @@ class MethodCollection extends AbstractCollection
      * @param $keyword
      * @return MethodCollection
      */
-    public function findByComment($keyword)
+    public function withComment($keyword)
     {
         return new MethodCollection($this->filter(function (Method $method) use ($keyword) {
             return strpos($method->comment, $keyword) !== false;

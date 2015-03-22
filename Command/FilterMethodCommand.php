@@ -64,10 +64,10 @@ class FilterMethodCommand extends BaseCommand
         $methods = $model->methodCollection;
 
         if ($target = $input->getOption('annotation')) {
-            $methods = $methods->findByAnnotationName($target);
+            $methods = $methods->withAnnotationName($target);
         }
         if ($keyword = $input->getOption('comment')) {
-            $methods = $methods->findByComment($keyword);
+            $methods = $methods->withComment($keyword);
         }
 
         if (count($methods) > 0) {
