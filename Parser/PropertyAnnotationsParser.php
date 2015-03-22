@@ -57,7 +57,7 @@ class PropertyAnnotationsParser
                     $searchAlias = $var->parameters;
                 }
 
-                $classReferences = $class->references->findByAlias($searchAlias);
+                $classReferences = $class->references->withAlias($searchAlias);
                 if ($classReferences->count()) {
                     $ref = $this->referenceFactory->create($var->parameters, null);
                     $property->reference = $ref;

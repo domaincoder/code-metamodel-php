@@ -17,7 +17,11 @@ use DomainCoder\Metamodel\Code\Util\AbstractCollection;
 
 class ReferenceCollection extends AbstractCollection
 {
-    public function findByAlias($name)
+    /**
+     * @param $name
+     * @return ReferenceCollection
+     */
+    public function withAlias($name)
     {
         return new ReferenceCollection($this->filter(function (Reference $reference) use ($name) {
             return $reference->alias === $name;
