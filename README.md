@@ -28,8 +28,15 @@ Code Metamodel for PHP
 
 `CodeMetamodel-PHP` can be installed using  [Composer](http://getcomposer.org/).
 
+CAUTION: dev package is only available.
+
 ```
-composer require domaincoder/code-metamodel-php "@dev"
+// composer.json
+{
+    "minimum-stability": "dev"
+}
+
+$ composer require domaincoder/code-metamodel-php
 ```
 
 ## Commands
