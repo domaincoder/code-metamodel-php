@@ -51,11 +51,12 @@ class PropertyParserTest extends \PHPUnit_Framework_TestCase
      */
     public function parseNormal()
     {
-        $stmts = include __DIR__.'/../fixtures/1/Model/Product.php.property.cache';
+        $stmts = include __DIR__.'/../fixtures/1/Model/Product.php.property_base.cache';
 
         $property = $this->parser->parse($stmts, $this->class);
 
         $this->assertThat($property, $this->isInstanceOf(Property::class));
         $this->assertThat($property->name, $this->equalTo('updatedAt'));
+        $this->assertThat($property->getAccessModifier(), $this->equalTo('public'));
     }
 }

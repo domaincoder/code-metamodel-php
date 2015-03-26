@@ -82,10 +82,16 @@ class ClassParser
             return $this->propertyParser->match($stmt);
         });
         array_map(function (Stmt $propertiesStmt) use ($class) {
-            array_map(function (Stmt $propertyStmt) use ($class, $propertiesStmt) {
-                $prop = $this->propertyParser->parse($propertyStmt, $class);
-                $this->propertyAnnotationParser->parse($propertiesStmt, $prop, $class);
-            }, $propertiesStmt->props);
+            $prop = $this->propertyParser->parse($propertiesStmt, $class);
+            $this->propertyAnnotationParser->parse($propertiesStmt, $prop, $class);
+
+            $varAnnotations = $prop->annotations->withName('var');
+            if (!$varAnnotations->isEmpty()) {
+                /** @var Element\Annotation $var */
+                $var = $varAnnotations->first();
+                $prop->setAccessModifier($var->parameters);
+            }
+
         }, $properties);
 
         // method

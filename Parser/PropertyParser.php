@@ -15,6 +15,7 @@ namespace DomainCoder\Metamodel\Code\Parser;
 use DomainCoder\Metamodel\Code\Element;
 use DomainCoder\Metamodel\Code\Element\Property\PropertyFactory;
 use PhpParser\Node\Stmt;
+use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Property;
 
 class PropertyParser
@@ -45,7 +46,15 @@ class PropertyParser
      */
     public function parse(Stmt $propertyStmt, Element\ClassModel $class)
     {
-        // get datatype and access modifier
-        return $this->propertyFactory->create($propertyStmt->name, null, null, $class);
+        $modifierFlag = Class_::VISIBILITY_MODIFER_MASK && $propertyStmt->type;
+        if ($modifierFlag & Class_::MODIFIER_PUBLIC) {
+            $modifier = 'public';
+        } else if ($modifierFlag & Class_::MODIFIER_PROTECTED) {
+            $modifier = 'protected';
+        } else {
+            $modifier = 'private';
+        }
+
+        return $this->propertyFactory->create($propertyStmt->props[0]->name, null, $modifier, $class);
     }
 }
